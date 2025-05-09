@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
 import java.io.File;
+import java.util.Locale;
 
 public class RegistrationTest {
     RegistrationPage registrationPage = new RegistrationPage();
@@ -20,7 +21,7 @@ public class RegistrationTest {
 
     @Test
     void fillFormTest() {
-        Faker faker = new Faker();
+        Faker faker = new Faker(new Locale("ru"));
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String email = faker.internet().emailAddress();
