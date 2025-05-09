@@ -1,6 +1,7 @@
 package demoqa;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
@@ -19,11 +20,12 @@ public class RegistrationTest {
 
     @Test
     void fillFormTest() {
-        String firstName = "Egorka";
-        String lastName = "Smirnov";
-        String email = "egorka@gmail.com";
-        String addressCurrent = "San Francisco, CA";
-        String mobile = "7123456789";
+        Faker faker = new Faker();
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String email = faker.internet().emailAddress();
+        String addressCurrent = faker.address().streetAddress();
+        String mobile = faker.numerify("7#########");
 
         registrationPage.openPage()
                 .setFirstName(firstName)
