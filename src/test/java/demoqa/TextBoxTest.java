@@ -1,7 +1,5 @@
 package demoqa;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -10,18 +8,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class TextBoxTest {
+public class TextBoxTest extends BaseTest {
 
     private String name;
     private String email;
     private String addressCurrent;
     private String addressPermanent;
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-    }
 
     @Test
     void fillFormTest() {

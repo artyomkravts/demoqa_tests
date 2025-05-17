@@ -1,27 +1,18 @@
 package demoqa;
 
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
 import java.io.File;
 import java.util.Locale;
 
-public class RegistrationTest {
+public class RegistrationTest extends BaseTest {
     RegistrationPage registrationPage = new RegistrationPage();
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.browser = "chrome";
-    }
 
     @Test
     void fillFormTest() {
-        Faker faker = new Faker(new Locale("ru"));
+        Faker faker = new Faker(new Locale("EN"));
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String email = faker.internet().emailAddress();
