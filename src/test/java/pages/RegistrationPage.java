@@ -8,6 +8,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
 public class RegistrationPage {
     private CalendarComponent calendarComponent = new CalendarComponent();
@@ -36,10 +37,13 @@ public class RegistrationPage {
             currentAddressInput = $("#currentAddress"),
             submitButton = $("#submit");
 
+
     public RegistrationPage openPage() {
-        open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
-        executeJavaScript("$('footer').remove()");
+        step("Open page", () -> {
+            open("/automation-practice-form");
+            $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
+            executeJavaScript("$('footer').remove()");
+        });
         return this;
     }
 

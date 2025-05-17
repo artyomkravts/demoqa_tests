@@ -7,6 +7,8 @@ import pages.RegistrationPage;
 import java.io.File;
 import java.util.Locale;
 
+import static io.qameta.allure.Allure.step;
+
 public class RegistrationTest extends BaseTest {
     RegistrationPage registrationPage = new RegistrationPage();
 
@@ -19,28 +21,32 @@ public class RegistrationTest extends BaseTest {
         String addressCurrent = faker.address().streetAddress();
         String mobile = faker.numerify("7#########");
 
-        registrationPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmailInput(email)
-                .clickGenderRadioButtonByNumber(registrationPage.GENDER_MALE)
-                .setUserNumberInput(mobile)
-                .setDayMonthYear(registrationPage.DAY20, registrationPage.APRIL, registrationPage.YEAR2000)
-                .setSubject(registrationPage.SUBJECT_COMPUTER_SCIENCE)
-                .setSubject(registrationPage.SUBJECT_MATHS)
-                .clickHobbiesCheckboxByNumber(registrationPage.HOBBY_SPORTS)
-                .uploadImage(new File("src/test/resources/img.png"))
-                .setCurrentAddressInput(addressCurrent)
-                .setStateByNumber(registrationPage.STATE_RAJASHTAN)
-                .setCityByNumber(registrationPage.CITY_JAIPUR)
-                .clickSubmitButton();
+        step("Fill in the form", () -> {
+            registrationPage.openPage()
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setUserEmailInput(email)
+                    .clickGenderRadioButtonByNumber(registrationPage.GENDER_MALE)
+                    .setUserNumberInput(mobile)
+                    .setDayMonthYear(registrationPage.DAY20, registrationPage.APRIL, registrationPage.YEAR2000)
+                    .setSubject(registrationPage.SUBJECT_COMPUTER_SCIENCE)
+                    .setSubject(registrationPage.SUBJECT_MATHS)
+                    .clickHobbiesCheckboxByNumber(registrationPage.HOBBY_SPORTS)
+                    .uploadImage(new File("src/test/resources/img.png"))
+                    .setCurrentAddressInput(addressCurrent)
+                    .setStateByNumber(registrationPage.STATE_RAJASHTAN)
+                    .setCityByNumber(registrationPage.CITY_JAIPUR)
+                    .clickSubmitButton();
+        });
 
-        registrationPage.verifyModalAppears()
-                .verifyResult("Student Name", firstName + " " + lastName)
-                .verifyResult("Student Email", email)
-                .verifyResult("Gender", "Male")
-                .verifyResult("Mobile", mobile)
-                .verifyResult("Address", addressCurrent)
-                .verifyResult("State and City", "Rajasthan Jaipur");
+        step("Verify fields in the form", () -> {
+            registrationPage.verifyModalAppears()
+                    .verifyResult("Student Name", firstName + " " + lastName)
+                    .verifyResult("Student Email", email)
+                    .verifyResult("Gender", "Male")
+                    .verifyResult("Mobile", mobile)
+                    .verifyResult("Address", addressCurrent)
+                    .verifyResult("State and City", "Rajasthan Jaipur");
+        });
     }
 }
