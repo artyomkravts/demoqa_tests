@@ -16,14 +16,14 @@ public abstract class BaseTest {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = "chrome";
-        Configuration.browserVersion = "100.0";
+        Configuration.browserVersion = "122.0";
         Configuration.browserSize = "1920x1080";
-        Configuration.remote = "http://localhost:4444";
+        Configuration.remote = "http://localhost:4444/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
-                "enableVNC", true,
-                "enableVideo", true
+                "enableVNC", true
+//                "enableVideo", true
         ));
 
         Configuration.browserCapabilities = capabilities;
@@ -39,6 +39,6 @@ public abstract class BaseTest {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.attachAsText("Example", "This is example message");
-        Attach.addVideo();
+//        Attach.addVideo();
     }
 }
