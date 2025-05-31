@@ -1,6 +1,7 @@
 package demoqa;
 
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -9,6 +10,7 @@ import java.util.Locale;
 
 import static io.qameta.allure.Allure.step;
 
+@Tag("remote")
 public class RegistrationTest extends BaseTest {
     RegistrationPage registrationPage = new RegistrationPage();
 
